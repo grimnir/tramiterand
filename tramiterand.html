@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrámiteRand™ — true entropy from Migraciones</title>
+<meta name="description" content="Cloudflare uses a wall of lava lamps for randomness. Amateurs. True entropy lives in Argentine immigration timelines.">
+<meta property="og:title" content="TrámiteRand™ — true randomness exists">
+<meta property="og:description" content="Lava lamps obey thermodynamics. Argentine DNI timelines obey nothing. The world's first honest RNG.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --celeste:#74ACDF;
+  --celeste-deep:#3E86B8;
+  --ink:#0E2431;
+  --ink-soft:#3A5866;
+  --sun:#E8A21A;
+  --sun-soft:#FFD34D;
+  --paper:#F2F0E8;
+  --white:#FFFFFF;
+  --term:#0A141C;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'IBM Plex Sans',system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--sun-soft);color:var(--ink)}
+
+/* ---------- NAV ---------- */
+nav{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:1150px;margin:0 auto;padding:20px 24px;
+}
+.logo{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:1.05rem;letter-spacing:-.02em;white-space:nowrap}
+.logo .star{color:var(--sun)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang{display:flex;gap:6px}
+.lb{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;
+  padding:6px 11px;border:1.5px solid var(--ink);border-radius:999px;
+  background:var(--white);cursor:pointer;transition:transform .12s,box-shadow .12s;
+}
+.lb:hover{transform:translate(-1px,-1px);box-shadow:2px 2px 0 var(--ink)}
+.lb.on{background:var(--sun-soft);box-shadow:2px 2px 0 var(--ink)}
+.lb:focus-visible{outline:2.5px solid var(--celeste-deep);outline-offset:2px}
+.nav-badge{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.08em;
+  border:1.5px solid var(--ink);border-radius:999px;padding:6px 12px;background:var(--white);
+  white-space:nowrap;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  max-width:1150px;margin:0 auto;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;
+  padding:48px 24px 80px;align-items:center;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--celeste-deep);margin-bottom:18px;
+}
+h1{
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:clamp(1.9rem,4.8vw,3.3rem);line-height:1.08;letter-spacing:-.015em;
+  margin-bottom:8px;
+}
+h1 .hl{
+  display:inline-block;
+  background:linear-gradient(transparent 58%, var(--sun-soft) 58%);
+}
+.lead{
+  font-size:1.05rem;line-height:1.68;color:var(--ink-soft);
+  max-width:33rem;margin-top:18px;
+}
+.lead b{color:var(--ink)}
+.cta-row{display:flex;align-items:center;gap:18px;margin-top:30px;flex-wrap:wrap}
+#rollBtn{
+  font-family:'Unbounded',sans-serif;font-weight:700;font-size:.92rem;
+  padding:16px 26px;border-radius:999px;cursor:pointer;
+  background:var(--sun-soft);color:var(--ink);
+  border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  transition:transform .15s ease,box-shadow .15s ease,opacity .15s;
+}
+#rollBtn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+#rollBtn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+#rollBtn:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:5px 5px 0 var(--ink)}
+#rollBtn:focus-visible{outline:3px solid var(--celeste-deep);outline-offset:3px}
+.bits{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--ink-soft)}
+.bits b{color:var(--ink)}
+.verdict{
+  margin-top:24px;max-width:33rem;min-height:70px;
+  font-family:'IBM Plex Mono',monospace;font-size:.95rem;line-height:1.6;
+  background:var(--white);border:2px dashed var(--celeste-deep);border-radius:14px;
+  padding:16px 18px;color:#0D3D55;
+}
+.verdict .caret{display:inline-block;width:.55em;height:1.1em;background:#0D3D55;
+  vertical-align:text-bottom;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.mini-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+.mini-row[hidden]{display:none}
+.mini{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;
+  padding:7px 14px;border:1.5px solid var(--ink);border-radius:999px;
+  background:var(--white);cursor:pointer;transition:transform .12s,box-shadow .12s;
+  color:var(--ink);text-decoration:none;display:inline-block;
+}
+.mini:hover{transform:translate(-1px,-1px);box-shadow:2px 2px 0 var(--ink)}
+.mini:focus-visible{outline:2.5px solid var(--celeste-deep);outline-offset:2px}
+
+/* ---------- DNI CARD ---------- */
+.card-wrap{position:relative;container-type:inline-size}
+.card-glow{
+  position:absolute;inset:8% -6% -4% -6%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(116,172,223,.5),transparent 70%);
+  filter:blur(30px);z-index:0;
+}
+.dni{
+  position:relative;z-index:1;
+  width:min(470px,100%);aspect-ratio:1.586;margin:0 auto;
+  border-radius:16px;overflow:hidden;
+  background:linear-gradient(130deg,#F2FBFF 0%,#DCF0F8 45%,#C2E1EF 100%);
+  box-shadow:0 30px 60px -22px rgba(14,36,49,.4),0 8px 22px -10px rgba(14,36,49,.28);
+  transform:rotate(-2.5deg);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  font-size:11px;
+}
+@supports (font-size:1cqi){ .dni{font-size:2.42cqi} }
+.dni:hover{transform:rotate(0deg) scale(1.015)}
+.guill{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.wm-sun{position:absolute;right:-9%;top:16%;width:46%;opacity:.12;pointer-events:none}
+.shine{
+  position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.6) 50%,transparent 58%);
+  background-size:280% 100%;
+  animation:shine 5.5s linear infinite;
+}
+@keyframes shine{0%{background-position:150% 0}100%{background-position:-80% 0}}
+.dni-in{position:relative;height:100%;padding:5% 5.5%;display:flex;flex-direction:column}
+.dni-head{display:flex;align-items:center;gap:.7em}
+.sunicon{width:2.3em;height:2.3em;flex:none}
+.dni-country{font-weight:700;letter-spacing:.13em;font-size:1em;color:#0C4A66}
+.dni-mercosur{font-size:.6em;letter-spacing:.32em;color:var(--celeste-deep)}
+.dni-tipo{
+  margin-left:auto;text-align:right;font-family:'IBM Plex Mono',monospace;
+  font-size:.62em;line-height:1.5;color:var(--celeste-deep);font-weight:600;
+}
+.dni-sub{font-size:.72em;font-style:italic;color:#2C6E8D;margin:.5em 0 1.1em}
+.dni-body{display:flex;gap:1.3em;flex:1;min-height:0}
+.dni-photo{width:26%;flex:none;border-radius:.5em;overflow:hidden;align-self:flex-start}
+.dni-photo svg{display:block;width:100%;height:auto}
+.dni-fields{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:.55em 1.2em;align-content:start}
+.f-wide{grid-column:1/-1}
+.f .l{font-size:.55em;letter-spacing:.05em;color:#4A7D95;text-transform:uppercase}
+.f .v{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.82em;color:#0E3A4F;letter-spacing:.01em}
+.dni-doc{margin-top:auto;padding-top:.6em}
+.dni-doc .l{font-size:.55em;letter-spacing:.05em;color:#4A7D95;text-transform:uppercase}
+.digits{
+  font-family:'IBM Plex Mono',monospace;font-weight:700;
+  font-size:1.75em;letter-spacing:.05em;color:#062E42;line-height:1.15;
+}
+.dgt{display:inline-block;min-width:.63em;text-align:center}
+.dgt.locked{animation:pop .32s ease-out}
+@keyframes pop{0%{transform:translateY(-.35em);color:var(--celeste-deep)}100%{transform:none}}
+.dni-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:1em;margin-top:.55em}
+.tramite{font-family:'IBM Plex Mono',monospace;font-size:.66em;color:#2C5D77}
+.firma{text-align:center}
+.firma svg{width:7em;height:auto;display:block}
+.firma .l{font-size:.5em;letter-spacing:.1em;color:#4A7D95;text-transform:uppercase}
+
+/* ---------- TICKET PRINTER ---------- */
+.printer{position:relative;z-index:1;width:min(290px,82%);margin:22px auto 0}
+.pr-slot{
+  height:16px;background:var(--ink);border-radius:10px;position:relative;z-index:2;
+  box-shadow:0 3px 0 rgba(14,36,49,.2);
+}
+.pr-slot::after{content:"";position:absolute;left:14px;right:14px;top:6px;height:3px;border-radius:3px;background:#2C4656}
+.tk-win{overflow:hidden;padding:0 16px;margin-top:-2px}
+.ticket{
+  background:#FFFDF4;border:1.5px solid #DAD3BC;border-top:none;
+  padding:12px 14px 14px;position:relative;
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;line-height:1.7;color:#33414A;
+  transform:translateY(-103%);
+  box-shadow:0 10px 20px -12px rgba(14,36,49,.4);
+}
+.ticket.printing{animation:tprint 1s steps(12,end) .1s forwards}
+@keyframes tprint{to{transform:translateY(0)}}
+.ticket::after{
+  content:"";position:absolute;top:100%;left:-1.5px;right:-1.5px;height:9px;
+  background:
+    linear-gradient(45deg,#FFFDF4 4.5px,transparent 0),
+    linear-gradient(-45deg,#FFFDF4 4.5px,transparent 0);
+  background-size:9px 9px;background-repeat:repeat-x;
+  filter:drop-shadow(0 2px 2px rgba(14,36,49,.12));
+}
+.tk-h{text-align:center;font-weight:700}
+.tk-h2{text-align:center;color:#7A8791;font-size:.92em}
+.tk-f{text-align:center;font-weight:700;margin-top:2px}
+.tk-f2{text-align:center;color:#98A3AB}
+.tr{display:flex;justify-content:space-between;gap:12px}
+.hr{border-top:1.5px dashed #CFC8AF;margin:7px 0}
+
+/* ---------- MARQUEE ---------- */
+.marquee{
+  background:var(--ink);color:var(--sun-soft);
+  font-family:'IBM Plex Mono',monospace;font-size:.82rem;
+  padding:11px 0;overflow:hidden;white-space:nowrap;
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+}
+.mq-track{display:inline-flex;animation:mq 30s linear infinite}
+.mq-track span{padding-right:3rem}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- STATS ---------- */
+.stats{
+  max-width:1150px;margin:0 auto;padding:56px 24px 0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.stat{
+  background:var(--white);border:2px solid var(--ink);border-radius:16px;
+  padding:20px 22px;
+}
+.stat b{font-family:'Unbounded',sans-serif;font-weight:700;font-size:1.45rem;display:block;letter-spacing:-.01em}
+.stat span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--ink-soft);display:block;margin-top:6px;line-height:1.5}
+
+/* ---------- SAFETY SIGN ---------- */
+.safety-wrap{max-width:1150px;margin:0 auto;padding:16px 24px 0}
+.safety{
+  background:repeating-linear-gradient(45deg,var(--sun-soft) 0 14px,var(--ink) 14px 28px);
+  border-radius:18px;padding:10px;
+}
+.safety-in{
+  position:relative;background:var(--white);border-radius:10px;padding:20px 24px;
+  display:flex;align-items:center;justify-content:center;gap:14px 28px;flex-wrap:wrap;
+  text-align:center;overflow:hidden;
+}
+.s-label{
+  font-family:'Unbounded',sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:clamp(.78rem,2vw,1.02rem);letter-spacing:.02em;max-width:22ch;
+}
+.s-digits{display:flex;gap:6px}
+.sd{
+  font-family:'IBM Plex Mono',monospace;font-weight:700;
+  font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1;
+  background:var(--ink);color:var(--sun-soft);border-radius:8px;padding:.14em .26em;
+}
+.safety-in.crash .sd{color:#FF5A5A;animation:shake .5s}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-5px)}40%{transform:translateX(5px)}
+  60%{transform:translateX(-4px)}80%{transform:translateX(3px)}
+}
+.s-rec{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--ink-soft);width:100%}
+.stamp{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%) rotate(-12deg);
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:clamp(1.3rem,4vw,2.1rem);color:#C0392B;
+  border:4px solid #C0392B;border-radius:10px;padding:.12em .5em;
+  opacity:0;pointer-events:none;background:rgba(255,255,255,.75);
+}
+.stamp.show{animation:stampin .3s ease-out forwards,stampout .5s ease .95s forwards}
+@keyframes stampin{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(-12deg) scale(2.3)}
+  100%{opacity:.94;transform:translate(-50%,-50%) rotate(-12deg) scale(1)}
+}
+@keyframes stampout{to{opacity:0}}
+
+/* ---------- SECTIONS ---------- */
+.sec{max-width:1150px;margin:0 auto;padding:80px 24px}
+h2{
+  font-family:'Unbounded',sans-serif;font-weight:700;
+  font-size:clamp(1.45rem,3.2vw,2.15rem);letter-spacing:-.01em;line-height:1.15;
+  margin-bottom:10px;
+}
+.sec-sub{color:var(--ink-soft);max-width:44rem;font-size:1rem}
+
+/* compare */
+.cmp-wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.cmp{
+  background:var(--white);border:2px solid var(--ink);border-radius:18px;
+  padding:26px 26px 30px;position:relative;
+}
+.cmp.win{background:linear-gradient(160deg,#EAF6FD,#F7FCFF)}
+.cmp-tag{
+  position:absolute;top:-13px;left:22px;
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--paper);border:1.5px solid var(--ink);border-radius:999px;padding:4px 12px;
+}
+.cmp.win .cmp-tag{background:var(--sun-soft)}
+.cmp h3{font-family:'Unbounded',sans-serif;font-weight:700;font-size:1.08rem;margin:14px 0 12px}
+.cmp p{color:var(--ink-soft);font-size:.95rem;line-height:1.65}
+.cmp p b{color:var(--ink)}
+.cmp-icon{height:120px;display:flex;align-items:center}
+.vs{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  background:var(--sun-soft);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  font-family:'Unbounded',sans-serif;font-weight:900;font-size:.95rem;
+}
+
+/* table */
+.tbl-wrap{margin-top:36px;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--white)}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:640px}
+th{
+  background:var(--ink);color:#EAF6FD;text-align:left;
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 18px;font-weight:600;
+}
+td{padding:15px 18px;border-top:1.5px solid #E1E9ED;vertical-align:top}
+td:first-child{font-family:'IBM Plex Mono',monospace;font-weight:600;white-space:nowrap}
+tr.win td{background:linear-gradient(90deg,#FFF6D6,#EAF6FD);border-top:2px solid var(--ink)}
+tr.win td:first-child::before{content:"✶ ";color:var(--sun)}
+.tbl-note{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--ink-soft);margin-top:12px}
+
+/* terminal */
+.term{background:var(--term);color:#BFE7FA}
+.term h2{color:#fff}
+.term .eyebrow{color:#6FB8D6}
+.term .sec-sub{color:#7FA6B8}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.bcell{
+  background:#0E1B24;border:1px solid #1E3A4C;border-radius:14px;
+  padding:20px;text-align:center;
+}
+.bl{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#5C7E90}
+.bn{
+  font-family:'IBM Plex Mono',monospace;font-weight:700;
+  font-size:clamp(1.9rem,6vw,2.9rem);letter-spacing:.08em;
+  color:var(--sun-soft);text-shadow:0 0 20px rgba(255,211,77,.35);
+  margin-top:8px;line-height:1.1;
+}
+.bn.blip{animation:blip .5s}
+@keyframes blip{0%{opacity:.15}100%{opacity:1}}
+.bs{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#5C7E90;margin-top:8px}
+.feed{
+  margin-top:16px;height:280px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  background:#0E1B24;border:1px solid #1E3A4C;border-radius:14px;
+  padding:18px 20px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;line-height:1.75;
+  color:#8FC7E8;white-space:nowrap;
+}
+.api{
+  margin-top:18px;background:#0E1B24;border:1px solid #1E3A4C;border-radius:14px;
+  padding:18px 20px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;line-height:1.8;
+  overflow-x:auto;color:#EAF6FD;
+}
+.api .c{color:#5C7E90}
+.api .y{color:var(--sun-soft)}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}
+.q{border-left:4px solid var(--sun);padding:6px 0 6px 18px}
+.q p{font-size:.95rem;line-height:1.62}
+.q cite{
+  display:block;margin-top:12px;font-style:normal;
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--ink-soft);
+}
+
+/* modal */
+.modal{
+  position:fixed;inset:0;z-index:60;display:none;place-items:center;
+  background:rgba(10,20,28,.82);padding:20px;
+}
+.modal.open{display:grid}
+.modal-in{
+  background:var(--paper);border:2px solid var(--ink);border-radius:18px;
+  padding:16px;max-width:min(720px,96vw);box-shadow:8px 8px 0 var(--ink);
+}
+.modal-in img{width:100%;display:block;border:1.5px solid var(--ink);border-radius:10px}
+.modal-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+.hint{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--ink-soft)}
+
+/* footer */
+footer{
+  border-top:2px solid var(--ink);padding:44px 24px 56px;text-align:center;
+  font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--ink-soft);line-height:2;
+}
+footer .star{color:var(--sun)}
+
+/* responsive */
+@media (max-width:920px){
+  .hero{grid-template-columns:1fr;gap:44px;padding-top:24px}
+  .stats{grid-template-columns:1fr 1fr}
+  .cmp-wrap{grid-template-columns:1fr;gap:34px}
+  .vs{display:none}
+  .quotes{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .nav-badge{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .shine,.mq-track,.verdict .caret,.bn.blip,.safety-in.crash .sd{animation:none}
+  .ticket.printing{animation:none;transform:none}
+  .stamp.show{animation:none;opacity:.94}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="star">✶</span> TrámiteRand™</div>
+  <div class="nav-right">
+    <div class="lang" role="group" aria-label="Language">
+      <button class="lb on" data-lang="en">EN</button>
+      <button class="lb" data-lang="es">ES</button>
+      <button class="lb" data-lang="ru">RU</button>
+    </div>
+    <button class="lb" id="sndBtn" aria-label="sound">🔊</button>
+    <div class="nav-badge" data-i18n="badge">eternal beta · v0.turno</div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow" data-i18n="hero_eyebrow">// true random number generator</div>
+    <h1 data-i18n="h1">True randomness exists. <span class="hl">It lives at&nbsp;Migraciones.</span></h1>
+    <p class="lead" data-i18n="lead">Cloudflare pointed a camera at a wall of a hundred lava lamps to harvest entropy. Adorable. We tapped a source that obeys no laws of physics, logic, or Argentina — <b>DNI processing times</b>.</p>
+    <div class="cta-row">
+      <button id="rollBtn" data-i18n="btn">Generate a random number</button>
+      <div class="bits"><span data-i18n="bits_pre">entropy harvested:</span> <b id="bits">0</b> <span data-i18n="bits_unit">bits</span></div>
+    </div>
+    <div class="verdict"><span id="verdictText">&gt; press the button. the office closes at 1:30 pm.</span><span class="caret"></span></div>
+    <div class="mini-row" id="miniRow" hidden>
+      <button id="copyBtn" class="mini">copy</button>
+      <button id="shareBtn" class="mini" data-i18n="sh_share">share as image</button>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card-glow"></div>
+    <div class="dni" id="dniCard">
+      <svg class="guill" viewBox="0 0 860 540" preserveAspectRatio="none" fill="none" stroke="#63AECB" stroke-width="1">
+        <path d="M0 70 C 143 15, 287 125, 430 70 S 717 15, 860 70"/>
+        <path d="M0 105 C 143 50, 287 160, 430 105 S 717 50, 860 105"/>
+        <path d="M0 140 C 143 85, 287 195, 430 140 S 717 85, 860 140"/>
+        <path d="M0 290 C 143 350, 287 230, 430 290 S 717 350, 860 290"/>
+        <path d="M0 330 C 143 390, 287 270, 430 330 S 717 390, 860 330"/>
+        <path d="M0 455 C 143 405, 287 505, 430 455 S 717 405, 860 455"/>
+        <path d="M0 490 C 143 440, 287 540, 430 490 S 717 440, 860 490"/>
+      </svg>
+      <svg class="wm-sun" viewBox="0 0 40 40" fill="none" stroke="#2C7EA3" stroke-width="1.6">
+        <circle cx="20" cy="20" r="7"/>
+        <path d="M30 20L37 20M28.7 25L34.7 28.5M25 28.7L28.5 34.7M20 30L20 37M15 28.7L11.5 34.7M11.3 25L5.3 28.5M10 20L3 20M11.3 15L5.3 11.5M15 11.3L11.5 5.3M20 10L20 3M25 11.3L28.5 5.3M28.7 15L34.7 11.5"/>
+      </svg>
+      <div class="shine"></div>
+      <div class="dni-in">
+        <div class="dni-head">
+          <svg class="sunicon" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="7" fill="#F6B40E" stroke="#C9880C" stroke-width="1.5"/>
+            <path stroke="#E8A21A" stroke-width="2" d="M30 20L37 20M28.7 25L34.7 28.5M25 28.7L28.5 34.7M20 30L20 37M15 28.7L11.5 34.7M11.3 25L5.3 28.5M10 20L3 20M11.3 15L5.3 11.5M15 11.3L11.5 5.3M20 10L20 3M25 11.3L28.5 5.3M28.7 15L34.7 11.5"/>
+          </svg>
+          <div>
+            <div class="dni-country">REPÚBLICA ARGENTINA</div>
+            <div class="dni-mercosur">MERCOSUR</div>
+          </div>
+          <div class="dni-tipo">DNI · TARJETA<br>REPOSICIÓN&nbsp;∞</div>
+        </div>
+        <div class="dni-sub">Documento Nacional de Identidad</div>
+        <div class="dni-body">
+          <div class="dni-photo">
+            <svg viewBox="0 0 90 120">
+              <rect width="90" height="120" fill="#CFE6F0"/>
+              <circle cx="45" cy="42" r="20" fill="#8FB9CC"/>
+              <path d="M12 120 C 12 88, 78 88, 78 120 Z" fill="#8FB9CC"/>
+              <text x="45" y="114" font-size="8.5" fill="#EAF6FB" text-anchor="middle" font-family="monospace">FOTO PENDIENTE</text>
+            </svg>
+          </div>
+          <div class="dni-fields">
+            <div class="f f-wide"><div class="l">Apellido / Surname</div><div class="v">ESPERANDO</div></div>
+            <div class="f f-wide"><div class="l">Nombre / Name</div><div class="v">SIGO</div></div>
+            <div class="f"><div class="l">Nacionalidad</div><div class="v">EN TRÁMITE</div></div>
+            <div class="f"><div class="l">Ejemplar</div><div class="v">Ñ</div></div>
+            <div class="f"><div class="l">Fecha de emisión</div><div class="v">MAÑANA</div></div>
+            <div class="f"><div class="l">Fecha de vencimiento</div><div class="v">AYER</div></div>
+            <div class="f"><div class="l">Fecha de nacimiento</div><div class="v">30/02/¿?¿?</div></div>
+            <div class="f"><div class="l">Oficina / Office</div><div class="v">VENT. 4 — CERRADA</div></div>
+          </div>
+        </div>
+        <div class="dni-doc">
+          <div class="l">Documento / Document</div>
+          <div class="digits" id="docDigits"></div>
+        </div>
+        <div class="dni-bottom">
+          <div class="tramite">TRÁMITE N° <span id="tramDigits"></span></div>
+          <div class="firma">
+            <svg viewBox="0 0 120 30" fill="none">
+              <path d="M4 20 C 18 4, 26 26, 38 14 S 60 6, 70 18 S 96 26, 116 8" stroke="#123B52" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <div class="l">Firma / Signature</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="printer">
+      <div class="pr-slot"></div>
+      <div class="tk-win"><div class="ticket" id="ticket"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>SIN TURNOS DISPONIBLES ✶ VUELVA MAÑANA ✶ SISTEMA MOMENTÁNEAMENTE CAÍDO ✶ FERIADO NACIONAL ✶ PARO GENERAL ✶ SU EXPEDIENTE ESTÁ EN ANÁLISIS ✶ EN PRODUCCIÓN (¿?) ✶ TURNO OTORGADO: 2029 ✶ LA OFICINA CIERRA 13:30 ✶</span>
+    <span>SIN TURNOS DISPONIBLES ✶ VUELVA MAÑANA ✶ SISTEMA MOMENTÁNEAMENTE CAÍDO ✶ FERIADO NACIONAL ✶ PARO GENERAL ✶ SU EXPEDIENTE ESTÁ EN ANÁLISIS ✶ EN PRODUCCIÓN (¿?) ✶ TURNO OTORGADO: 2029 ✶ LA OFICINA CIERRA 13:30 ✶</span>
+  </div>
+</div>
+
+<section class="stats">
+  <div class="stat"><b data-i18n="s1n">2 h — 4 yrs</b><span data-i18n="s1t">span of outcomes for two identical applications</span></div>
+  <div class="stat"><b>0</b><span data-i18n="s2t">factors that influence the result</span></div>
+  <div class="stat"><b>100 %</b><span data-i18n="s3t">unpredictability — verified by cryptanalysts and immigrants</span></div>
+  <div class="stat"><b>∞</b><span data-i18n="s4t">bits of entropy per expediente</span></div>
+</section>
+
+<div class="safety-wrap">
+  <div class="safety">
+    <div class="safety-in" id="safetyIn">
+      <div class="s-label" data-i18n="sf_label">days without losing an expediente</div>
+      <div class="s-digits"><span class="sd" id="sd1">0</span><span class="sd" id="sd2">0</span><span class="sd" id="sd3">3</span></div>
+      <div class="s-rec" data-i18n="sf_rec">all-time record: 4 (march 2019)</div>
+      <div class="stamp" id="stamp">EXTRAVIADO</div>
+    </div>
+  </div>
+</div>
+
+<section class="sec" id="how">
+  <div class="eyebrow" data-i18n="cmp_eyebrow">// method comparison</div>
+  <h2 data-i18n="cmp_h2">Lava lamps are for amateurs</h2>
+  <p class="sec-sub" data-i18n="cmp_sub">With all due respect to San Francisco.</p>
+
+  <div class="cmp-wrap">
+    <div class="vs">VS</div>
+
+    <div class="cmp">
+      <div class="cmp-tag" data-i18n="tag_them">the competition</div>
+      <div class="cmp-icon">
+        <svg viewBox="0 0 80 150" width="76" height="142">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#4A1233"/><stop offset="1" stop-color="#7A1D43"/>
+            </linearGradient>
+            <clipPath id="lc"><path d="M30 128 L26 42 C26 30 54 30 54 42 L50 128 Z"/></clipPath>
+          </defs>
+          <path d="M30 128 L26 42 C26 30 54 30 54 42 L50 128 Z" fill="url(#lg)"/>
+          <g clip-path="url(#lc)">
+            <circle cx="40" cy="110" r="9" fill="#FF4D8D">
+              <animate attributeName="cy" values="112;48;112" dur="7s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="33" cy="90" r="6" fill="#FF7A45">
+              <animate attributeName="cy" values="95;55;95" dur="9s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="47" cy="70" r="5" fill="#FFB36F">
+              <animate attributeName="cy" values="118;44;118" dur="5.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <path d="M30 128 L26 42 C26 30 54 30 54 42 L50 128 Z" fill="none" stroke="#0E2431" stroke-width="2"/>
+          <path d="M22 150 L58 150 L50 128 L30 128 Z" fill="#0E2431"/>
+          <path d="M34 30 L46 30 L44 16 L36 16 Z" fill="#0E2431"/>
+        </svg>
+      </div>
+      <h3>Cloudflare LavaRand™</h3>
+      <p data-i18n="cmp1_p">A wall of ~100 lava lamps in an office lobby. A camera photographs the wax; pixel noise becomes a TLS seed. Beautiful, expensive, very Instagram. One problem: <b>wax obeys thermodynamics</b>. It heats up, it rises. It cools down, it sinks. That, sorry, can be modeled.</p>
+    </div>
+
+    <div class="cmp win">
+      <div class="cmp-tag" data-i18n="tag_us">our method</div>
+      <div class="cmp-icon">
+        <svg viewBox="0 0 80 150" width="76" height="142" fill="none">
+          <circle cx="40" cy="42" r="14" fill="#F6B40E" stroke="#C9880C" stroke-width="2"/>
+          <path stroke="#E8A21A" stroke-width="3" stroke-linecap="round" d="M40 20L40 12M55.5 26.5L61 21M62 42L70 42M55.5 57.5L61 63M40 64L40 72M24.5 57.5L19 63M18 42L10 42M24.5 26.5L19 21"/>
+          <path d="M26 92 H54 M26 138 H54" stroke="#0E2431" stroke-width="3" stroke-linecap="round"/>
+          <path d="M28 94 L52 94 L40 113 Z" fill="#FFD34D" stroke="#0E2431" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M28 136 L52 136 L40 117 Z" fill="none" stroke="#0E2431" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M35 136 L45 136 L40 129 Z" fill="#FFD34D"/>
+          <circle cx="40" cy="118" r="1.6" fill="#0E2431">
+            <animate attributeName="cy" values="115;132;115" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+      <h3>TrámiteRand™ (Migraciones Edition)</h3>
+      <p data-i18n="cmp2_p">Two identical applications, same window, four minutes apart: the first one ready in 72 hours, the second one vanished for 14 months and came back with someone else&rsquo;s photo. No model in the universe reproduces this process, because it <b>depends on nothing. Absolutely nothing.</b></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="eyebrow" data-i18n="tbl_eyebrow">// specification</div>
+  <h2 data-i18n="tbl_h2">Entropy source benchmark</h2>
+  <div class="tbl-wrap"><div class="tbl-scroll">
+    <table>
+      <thead><tr><th data-i18n="th1">Source</th><th data-i18n="th2">Obeys</th><th data-i18n="th3">Can it be modeled?</th></tr></thead>
+      <tbody>
+        <tr><td>/dev/urandom</td><td data-i18n="t12">an algorithm</td><td data-i18n="t13">yes, if you know the seed</td></tr>
+        <tr><td data-i18n="t21">Cloudflare lava lamps</td><td data-i18n="t22">thermodynamics</td><td data-i18n="t23">in theory — yes</td></tr>
+        <tr><td data-i18n="t31">Quantum RNG</td><td data-i18n="t32">quantum mechanics</td><td data-i18n="t33">probabilistically</td></tr>
+        <tr><td data-i18n="t41">Radioactive decay</td><td data-i18n="t42">statistics</td><td data-i18n="t43">on average — yes</td></tr>
+        <tr class="win"><td data-i18n="t51">Migraciones timelines</td><td data-i18n="t52">nothing</td><td data-i18n="t53">no. they don&rsquo;t know either</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+  <div class="tbl-note" data-i18n="tbl_note">Methodology: 45 million witnesses, zero matches.</div>
+</section>
+
+<section class="term">
+  <div class="sec">
+    <div class="eyebrow" data-i18n="term_eyebrow">// live feed</div>
+    <h2 data-i18n="term_h2">Real-time entropy stream</h2>
+    <p class="sec-sub" data-i18n="term_sub">Captured straight from ventanilla 4. When it&rsquo;s open.</p>
+    <div class="board">
+      <div class="bcell">
+        <div class="bl" data-i18n="b_serving">now serving</div>
+        <div class="bn" id="servNum">A004</div>
+        <div class="bs" data-i18n="b_upd">updated 47 min ago</div>
+      </div>
+      <div class="bcell">
+        <div class="bl" data-i18n="b_your">your number</div>
+        <div class="bn" id="yourNum">—</div>
+        <div class="bs" data-i18n="b_wait">estimated wait: yes</div>
+      </div>
+    </div>
+    <div class="feed" id="feed"></div>
+    <pre class="api">$ curl https://api.tramiterand.ar/v1/random
+<span class="c"># HTTP/1.1</span> <span class="y">202 Accepted</span>
+<span class="c"># Retry-After:</span> ¯\_(ツ)_/¯
+<span class="c" data-i18n="api_note"># the response will arrive. eventually. maybe.</span></pre>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="eyebrow" data-i18n="q_eyebrow">// testimonials</div>
+  <h2 data-i18n="q_h2">Trusted by</h2>
+  <div class="quotes">
+    <div class="q"><p data-i18n="q1">&ldquo;We threw out the HSM and had an intern watch the RENAPER queue. Passed the FIPS audit on the first try.&rdquo;</p><cite data-i18n="q1c">— CTO, a neobank</cite></div>
+    <div class="q"><p data-i18n="q2">&ldquo;My wife and I applied on the same day. She&rsquo;s a citizen now. My turno is still &lsquo;being processed&rsquo;.&rdquo;</p><cite data-i18n="q2c">— entropy source #4,219,833</cite></div>
+    <div class="q"><p data-i18n="q3">&ldquo;Finally an RNG that can&rsquo;t be reversed. We tried. We cried.&rdquo;</p><cite data-i18n="q3c">— cryptanalysis team, under NDA</cite></div>
+  </div>
+</section>
+
+<footer data-i18n="foot">
+  TrámiteRand™ is a joke project. Not affiliated with RENAPER, the Dirección Nacional de Migraciones,<br>
+  Cloudflare, or predictability. No lava lamps were harmed.<br>
+  Hecho con paciencia infinita en Buenos Aires <span class="star">✶</span> eternal beta
+</footer>
+
+<div class="modal" id="shareModal" role="dialog" aria-modal="true">
+  <div class="modal-in">
+    <img id="shareImg" alt="TrámiteRand share card">
+    <div class="modal-actions">
+      <a id="dlLink" class="mini" data-i18n="sh_dl" download="tramiterand.png">download PNG</a>
+      <button id="closeModal" class="mini" data-i18n="sh_close">close</button>
+      <span class="hint" data-i18n="sh_hint">or long-press the image to save it</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var rd = function(){ return String(Math.floor(Math.random()*10)); };
+  var pick = function(a){ return a[Math.floor(Math.random()*a.length)]; };
+  var timeStr = function(){ return new Date().toTimeString().slice(0,8); };
+
+  /* ---------- i18n ---------- */
+  var I18N = {
+    en: {
+      badge:'eternal beta · v0.turno',
+      hero_eyebrow:'// true random number generator',
+      h1:'True randomness exists. <span class="hl">It lives at&nbsp;Migraciones.</span>',
+      lead:'Cloudflare pointed a camera at a wall of a hundred lava lamps to harvest entropy. Adorable. We tapped a source that obeys no laws of physics, logic, or Argentina — <b>DNI processing times</b>.',
+      btn:'Generate a random number',
+      bits_pre:'entropy harvested:', bits_unit:'bits',
+      v_placeholder:'> press the button. the office closes at 1:30 pm.',
+      q_wait:'> querying ventanilla 4…',
+      copy:'copy', copied:'✓ copied',
+      sh_share:'share as image', sh_dl:'download PNG', sh_close:'close',
+      sh_hint:'or long-press the image to save it',
+      sh_eyebrow:'// verdict from ventanilla 4',
+      sf_label:'days without losing an expediente',
+      sf_rec:'all-time record: 4 (march 2019)',
+      s1n:'2 h — 4 yrs', s1t:'span of outcomes for two identical applications',
+      s2t:'factors that influence the result',
+      s3t:'unpredictability — verified by cryptanalysts and immigrants',
+      s4t:'bits of entropy per expediente',
+      cmp_eyebrow:'// method comparison', cmp_h2:'Lava lamps are for amateurs', cmp_sub:'With all due respect to San Francisco.',
+      tag_them:'the competition', tag_us:'our method',
+      cmp1_p:'A wall of ~100 lava lamps in an office lobby. A camera photographs the wax; pixel noise becomes a TLS seed. Beautiful, expensive, very Instagram. One problem: <b>wax obeys thermodynamics</b>. It heats up, it rises. It cools down, it sinks. That, sorry, can be modeled.',
+      cmp2_p:'Two identical applications, same window, four minutes apart: the first one ready in 72 hours, the second one vanished for 14 months and came back with someone else\u2019s photo. No model in the universe reproduces this process, because it <b>depends on nothing. Absolutely nothing.</b>',
+      tbl_eyebrow:'// specification', tbl_h2:'Entropy source benchmark',
+      th1:'Source', th2:'Obeys', th3:'Can it be modeled?',
+      t12:'an algorithm', t13:'yes, if you know the seed',
+      t21:'Cloudflare lava lamps', t22:'thermodynamics', t23:'in theory — yes',
+      t31:'Quantum RNG', t32:'quantum mechanics', t33:'probabilistically',
+      t41:'Radioactive decay', t42:'statistics', t43:'on average — yes',
+      t51:'Migraciones timelines', t52:'nothing', t53:'no. they don\u2019t know either',
+      tbl_note:'Methodology: 45 million witnesses, zero matches.',
+      term_eyebrow:'// live feed', term_h2:'Real-time entropy stream', term_sub:'Captured straight from ventanilla 4. When it\u2019s open.',
+      b_serving:'now serving', b_upd:'updated 47 min ago', b_your:'your number', b_wait:'estimated wait: yes',
+      api_note:'# the response will arrive. eventually. maybe.',
+      q_eyebrow:'// testimonials', q_h2:'Trusted by',
+      q1:'\u201cWe threw out the HSM and had an intern watch the RENAPER queue. Passed the FIPS audit on the first try.\u201d', q1c:'— CTO, a neobank',
+      q2:'\u201cMy wife and I applied on the same day. She\u2019s a citizen now. My turno is still \u2018being processed\u2019.\u201d', q2c:'— entropy source #4,219,833',
+      q3:'\u201cFinally an RNG that can\u2019t be reversed. We tried. We cried.\u201d', q3c:'— cryptanalysis team, under NDA',
+      foot:'TrámiteRand™ is a joke project. Not affiliated with RENAPER, the Dirección Nacional de Migraciones,<br>Cloudflare, or predictability. No lava lamps were harmed.<br>Hecho con paciencia infinita en Buenos Aires <span class="star">✶</span> eternal beta'
+    },
+    es: {
+      badge:'beta eterna · v0.turno',
+      hero_eyebrow:'// generador de números verdaderamente aleatorios',
+      h1:'El azar de verdad existe. <span class="hl">Vive en&nbsp;Migraciones.</span>',
+      lead:'Cloudflare le apunta una cámara a una pared con cien lámparas de lava para cosechar entropía. Tierno. Nosotros nos conectamos a una fuente que no obedece las leyes de la física, de la lógica ni de la Argentina: <b>los plazos del DNI</b>.',
+      btn:'Generar un número aleatorio',
+      bits_pre:'entropía cosechada:', bits_unit:'bits',
+      v_placeholder:'> apretá el botón. la oficina cierra 13:30.',
+      q_wait:'> consultando ventanilla 4…',
+      copy:'copiar', copied:'✓ copiado',
+      sh_share:'compartir como imagen', sh_dl:'descargar PNG', sh_close:'cerrar',
+      sh_hint:'o mantené apretada la imagen para guardarla',
+      sh_eyebrow:'// veredicto de la ventanilla 4',
+      sf_label:'días sin perder un expediente',
+      sf_rec:'récord histórico: 4 (marzo 2019)',
+      s1n:'2 h — 4 años', s1t:'de diferencia entre dos trámites idénticos',
+      s2t:'factores que influyen en el resultado',
+      s3t:'imprevisibilidad — verificada por criptoanalistas e inmigrantes',
+      s4t:'bits de entropía por expediente',
+      cmp_eyebrow:'// comparación de métodos', cmp_h2:'Las lámparas de lava son para amateurs', cmp_sub:'Con todo respeto a San Francisco, che.',
+      tag_them:'la competencia', tag_us:'nuestro método',
+      cmp1_p:'Una pared con ~100 lámparas de lava en el lobby. Una cámara fotografía la cera; el ruido de los píxeles se convierte en seed para TLS. Lindo, caro, re instagrameable. Un problema: <b>la cera obedece la termodinámica</b>. Se calienta, sube. Se enfría, baja. Eso, disculpen, se puede modelar.',
+      cmp2_p:'Dos trámites idénticos, misma ventanilla, cuatro minutos de diferencia: el primero salió en 72 horas; el segundo desapareció 14 meses y volvió con la foto de otra persona. Ningún modelo del universo reproduce este proceso, porque <b>no depende de nada. De nada, literal.</b>',
+      tbl_eyebrow:'// especificación', tbl_h2:'Benchmark de fuentes de entropía',
+      th1:'Fuente', th2:'Obedece a', th3:'¿Se puede modelar?',
+      t12:'un algoritmo', t13:'sí, si sabés el seed',
+      t21:'Lámparas de lava de Cloudflare', t22:'la termodinámica', t23:'en teoría, sí',
+      t31:'RNG cuántico', t32:'la mecánica cuántica', t33:'probabilísticamente',
+      t41:'Decaimiento radiactivo', t42:'la estadística', t43:'en promedio, sí',
+      t51:'Plazos de Migraciones', t52:'nada', t53:'no. ni ellos saben',
+      tbl_note:'Metodología: 45 millones de testigos, cero coincidencias.',
+      term_eyebrow:'// transmisión en vivo', term_h2:'Flujo de entropía en tiempo real', term_sub:'Capturado directo de la ventanilla 4. Cuando está abierta.',
+      b_serving:'atendiendo', b_upd:'actualizado hace 47 min', b_your:'su número', b_wait:'espera estimada: sí',
+      api_note:'# la respuesta va a llegar. en algún momento. capaz.',
+      q_eyebrow:'// testimonios', q_h2:'Confían en nosotros',
+      q1:'«Tiramos el HSM y pusimos a un pasante a mirar la fila del RENAPER. Pasamos la auditoría FIPS al primer intento.»', q1c:'— CTO de un neobanco',
+      q2:'«Presentamos los papeles el mismo día con mi esposa. Ella ya es ciudadana. Mi turno sigue \u201cen proceso\u201d.»', q2c:'— fuente de entropía N.º 4.219.833',
+      q3:'«Por fin un RNG imposible de reversear. Lo intentamos. Lloramos.»', q3c:'— equipo de criptoanálisis, bajo NDA',
+      foot:'TrámiteRand™ es un proyecto en joda. Sin afiliación con RENAPER, la Dirección Nacional de Migraciones,<br>Cloudflare ni la previsibilidad. Ninguna lámpara de lava resultó herida.<br>Hecho con paciencia infinita en Buenos Aires <span class="star">✶</span> beta eterna'
+    },
+    ru: {
+      badge:'вечная бета · v0.turno',
+      hero_eyebrow:'// генератор истинно случайных чисел',
+      h1:'Истинная случайность существует. <span class="hl">Она живёт в&nbsp;Migraciones.</span>',
+      lead:'Cloudflare поставила стену из сотни лава-ламп и снимает её на камеру, чтобы добывать энтропию. Трогательно. Мы подключились к источнику, который не подчиняется законам физики, логики и Аргентины — <b>к срокам выдачи DNI</b>.',
+      btn:'Сгенерировать случайное число',
+      bits_pre:'энтропии собрано:', bits_unit:'бит',
+      v_placeholder:'> нажмите кнопку. окно закрывается в 13:30.',
+      q_wait:'> опрашиваем ventanilla 4…',
+      copy:'скопировать', copied:'✓ скопировано',
+      sh_share:'поделиться картинкой', sh_dl:'скачать PNG', sh_close:'закрыть',
+      sh_hint:'или удержите картинку, чтобы сохранить',
+      sh_eyebrow:'// вердикт из ventanilla 4',
+      sf_label:'дней без потери expediente',
+      sf_rec:'исторический рекорд: 4 (март 2019)',
+      s1n:'2 ч — 4 года', s1t:'разброс сроков на два одинаковых заявления',
+      s2t:'факторов, влияющих на результат',
+      s3t:'непредсказуемость — подтверждено криптоаналитиками и мигрантами',
+      s4t:'бит энтропии с одного expediente',
+      cmp_eyebrow:'// сравнение методов', cmp_h2:'Лава-лампы — для любителей', cmp_sub:'При всём уважении к Сан-Франциско.',
+      tag_them:'конкурент', tag_us:'наш метод',
+      cmp1_p:'Стена из ~100 лава-ламп в лобби офиса. Камера фотографирует воск, шум пикселей превращается в seed для TLS. Красиво, дорого, инстаграмно. Одна проблема: <b>воск подчиняется термодинамике</b>. Нагрелся — всплыл. Остыл — утонул. Это, извините, моделируется.',
+      cmp2_p:'Два идентичных заявления, поданных в одно окно с разницей в четыре минуты: первое готово за 72 часа, второе исчезло на 14 месяцев и вернулось с чужой фотографией. Ни одна модель во вселенной не воспроизводит этот процесс, потому что он <b>не зависит ни от чего. Вообще ни от чего.</b>',
+      tbl_eyebrow:'// спецификация', tbl_h2:'Бенчмарк источников энтропии',
+      th1:'Источник', th2:'Чему подчиняется', th3:'Можно смоделировать?',
+      t12:'алгоритму', t13:'да, если знать seed',
+      t21:'Лава-лампы Cloudflare', t22:'термодинамике', t23:'теоретически — да',
+      t31:'Квантовый ГСЧ', t32:'квантовой механике', t33:'вероятностно',
+      t41:'Радиоактивный распад', t42:'статистике', t43:'в среднем — да',
+      t51:'Сроки Migraciones', t52:'ничему', t53:'нет. они сами не знают',
+      tbl_note:'Методология: 45 миллионов свидетелей, ни одного совпадения.',
+      term_eyebrow:'// живой поток', term_h2:'Поток энтропии в реальном времени', term_sub:'Снимается напрямую с ventanilla 4. Когда она открыта.',
+      b_serving:'сейчас обслуживается', b_upd:'обновлено 47 мин назад', b_your:'ваш номер', b_wait:'ожидание: да',
+      api_note:'# ответ придёт. когда-нибудь. может быть.',
+      q_eyebrow:'// отзывы', q_h2:'Нам доверяют',
+      q1:'«Мы выкинули HSM и посадили стажёра смотреть на очередь в RENAPER. FIPS-аудит пройден с первого раза.»', q1c:'— CTO необанка',
+      q2:'«Подали документы в один день с женой. Она уже гражданка. Мой турно до сих пор „в обработке“.»', q2c:'— источник энтропии № 4 219 833',
+      q3:'«Наконец-то ГСЧ, который невозможно реверсить. Мы пробовали. Мы плакали.»', q3c:'— отдел криптоанализа, под NDA',
+      foot:'TrámiteRand™ — шуточный проект. Не аффилирован с RENAPER, Dirección Nacional de Migraciones,<br>Cloudflare и предсказуемостью. Ни одна лава-лампа не пострадала.<br>Hecho con paciencia infinita en Buenos Aires <span class="star">✶</span> вечная бета'
+    }
+  };
+
+  var VER = {
+    en: [
+      'Your DNI will be ready in 72 hours. Inexplicable, but congratulations.',
+      'In 14 months. Maybe 15. The system says «en producción» — nobody knows what that means.',
+      'It has been ready for three months. Nobody called you. Nobody will.',
+      'Sistema momentáneamente caído. Vuelva mañana. (Mañana is a concept, not a day.)',
+      'Your expediente was moved to the archive. The archive was moved. Location: under investigation.',
+      'One more copy of your passport is required. The same one. But certified. By a different notary.',
+      'Done! But there is a typo in your surname. The process restarts. From zero. Yes.',
+      'Instantly. Odd — you have not even applied yet.',
+      'Today is a feriado. Tomorrow is also a feriado. Thursday: paro.',
+      'Turno available: 03 Nov 2029, 8:45 am. Do not be late.',
+      'Your application was approved and rejected simultaneously. Superposition. Quantum RNGs are sweating.',
+      'Two weeks.* (*Argentine weeks; the exchange rate to regular weeks floats)'
+    ],
+    es: [
+      'Tu DNI va a estar listo en 72 horas. No tiene explicación, pero felicitaciones.',
+      'En 14 meses. Capaz 15. El sistema dice «en producción»: nadie sabe qué significa.',
+      'Está listo hace tres meses. No te llamó nadie. Y no te van a llamar.',
+      'Sistema momentáneamente caído. Volvé mañana. (Mañana es un concepto, no un día.)',
+      'Tu expediente pasó al archivo. El archivo se mudó. ¿A dónde? Se está averiguando.',
+      'Falta otra copia del pasaporte. La misma. Pero certificada. Por otro escribano.',
+      '¡Listo! Pero tu apellido tiene un error. El trámite arranca de nuevo. De cero. Sí.',
+      'Instantáneo. Raro: todavía ni presentaste los papeles.',
+      'Hoy es feriado. Mañana también es feriado. El jueves hay paro.',
+      'Turno disponible: 03/11/2029, 8:45. No llegues tarde.',
+      'Tu solicitud fue aprobada y rechazada a la vez. Superposición. Los RNG cuánticos están transpirando.',
+      'En dos semanas.* (*semanas argentinas; la cotización contra semanas normales flota)'
+    ],
+    ru: [
+      'Ваш DNI будет готов через 72 часа. Ничем не объяснимо, но поздравляем.',
+      'Через 14 месяцев. Возможно, 15. Система показывает «en producción» — никто не знает, что это значит.',
+      'Документ готов уже три месяца. Вам никто не позвонил. И не позвонит.',
+      'Sistema momentáneamente caído. Vuelva mañana. (Mañana — это концепция, а не день.)',
+      'Ваш expediente перемещён в архив. Архив перемещён. Куда — выясняется.',
+      'Нужна ещё одна копия паспорта. Та же самая. Но заверенная. Другим нотариусом.',
+      'Готово! Но в фамилии опечатка. Начинаем процесс заново. С нуля. Да.',
+      'Мгновенно. Странно — вы ведь ещё даже не подавали документы.',
+      'Сегодня feriado. Завтра тоже feriado. В четверг — paro.',
+      'Turno доступен: 03.11.2029, 08:45. Не опаздывайте.',
+      'Заявка одобрена и отклонена одновременно. Суперпозиция. Квантовые ГСЧ нервно курят.',
+      'Через 2 недели.* (*аргентинские недели, курс к обычным — плавающий)'
+    ]
+  };
+
+  var LANG = 'en';
+  var lastVerdict = -1;
+  var typeSession = 0;
+  var verdictEl = document.getElementById('verdictText');
+  var miniRow = document.getElementById('miniRow');
+  var copyBtn = document.getElementById('copyBtn');
+  var shareBtn = document.getElementById('shareBtn');
+  var btn = document.getElementById('rollBtn');
+  var bitsEl = document.getElementById('bits');
+  var bits = 0;
+
+  function applyLang(l){
+    LANG = l;
+    document.documentElement.lang = (l === 'es') ? 'es-AR' : l;
+    var nodes = document.querySelectorAll('[data-i18n]');
+    for (var i=0; i<nodes.length; i++){
+      var k = nodes[i].getAttribute('data-i18n');
+      if (I18N[l][k] != null) nodes[i].innerHTML = I18N[l][k];
+    }
+    var lbs = document.querySelectorAll('.lb[data-lang]');
+    for (var j=0; j<lbs.length; j++){
+      lbs[j].classList.toggle('on', lbs[j].getAttribute('data-lang') === l);
+    }
+    typeSession++;
+    if (lastVerdict >= 0){
+      verdictEl.textContent = '> ' + VER[l][lastVerdict];
+    } else {
+      verdictEl.textContent = I18N[l].v_placeholder;
+    }
+    copyBtn.textContent = I18N[l].copy;
+  }
+  var lbs = document.querySelectorAll('.lb[data-lang]');
+  for (var li=0; li<lbs.length; li++){
+    lbs[li].addEventListener('click', function(){ applyLang(this.getAttribute('data-lang')); });
+  }
+
+  /* ---------- sound (dot-matrix printer) ---------- */
+  var interacted = false;
+  window.addEventListener('pointerdown', function(){ interacted = true; }, {once:true});
+  var soundOn = true;
+  var actx = null, noiseBuf = null;
+  var sndBtn = document.getElementById('sndBtn');
+  sndBtn.addEventListener('click', function(){
+    soundOn = !soundOn;
+    sndBtn.textContent = soundOn ? '🔊' : '🔇';
+  });
+  function ac(){
+    if (!interacted || !soundOn) return null;
+    if (!actx){
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      actx = new AC();
+      var len = Math.floor(actx.sampleRate * 0.04);
+      noiseBuf = actx.createBuffer(1, len, actx.sampleRate);
+      var d = noiseBuf.getChannelData(0);
+      for (var i=0; i<len; i++) d[i] = Math.random()*2 - 1;
+    }
+    if (actx.state === 'suspended') actx.resume();
+    return actx;
+  }
+  function playPrint(durMs){
+    var ctx = ac();
+    if (!ctx) return;
+    var t0 = ctx.currentTime + 0.03;
+    var n = Math.floor(durMs / 58);
+    for (var i=0; i<n; i++){
+      var t = t0 + i*0.058 + Math.random()*0.01;
+      var src = ctx.createBufferSource(); src.buffer = noiseBuf;
+      var f = ctx.createBiquadFilter(); f.type = 'bandpass';
+      f.frequency.value = 1500 + Math.random()*700; f.Q.value = 1.5;
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.001, t);
+      g.gain.exponentialRampToValueAtTime(0.09, t + 0.004);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
+      src.connect(f); f.connect(g); g.connect(ctx.destination);
+      src.start(t); src.stop(t + 0.04);
+    }
+    var tb = t0 + durMs/1000 + 0.05;
+    var o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = 1318;
+    var gb = ctx.createGain();
+    gb.gain.setValueAtTime(0.0001, tb);
+    gb.gain.exponentialRampToValueAtTime(0.12, tb + 0.008);
+    gb.gain.exponentialRampToValueAtTime(0.0001, tb + 0.6);
+    o.connect(gb); gb.connect(ctx.destination);
+    o.start(tb); o.stop(tb + 0.65);
+  }
+
+  /* ---------- digits ---------- */
+  function makeDigits(el, pattern){
+    el.innerHTML = '';
+    var spans = [];
+    for (var i=0; i<pattern.length; i++){
+      var ch = pattern[i];
+      var s = document.createElement('span');
+      if (ch === '#'){ s.className = 'dgt'; s.textContent = rd(); spans.push(s); }
+      else { s.textContent = ch; }
+      el.appendChild(s);
+    }
+    return spans;
+  }
+  function roll(spans){
+    return new Promise(function(res){
+      spans.forEach(function(s){ s.classList.remove('locked'); });
+      var stopped = 0;
+      var iv = setInterval(function(){
+        for (var i=stopped; i<spans.length; i++) spans[i].textContent = rd();
+      }, 45);
+      var stopper = setInterval(function(){
+        spans[stopped].classList.add('locked');
+        stopped++;
+        if (stopped >= spans.length){ clearInterval(iv); clearInterval(stopper); res(); }
+      }, 105);
+    });
+  }
+  var docEl = document.getElementById('docDigits');
+  var tramEl = document.getElementById('tramDigits');
+  var docSpans = makeDigits(docEl, '9#.###.###');
+  var tramSpans = makeDigits(tramEl, '###########');
+
+  function typeInto(el, text){
+    var s = ++typeSession;
+    el.textContent = '> ';
+    var i = 0;
+    return new Promise(function(res){
+      (function step(){
+        if (s !== typeSession){ res(); return; }
+        if (i >= text.length){ res(); return; }
+        el.textContent += text.charAt(i++);
+        setTimeout(step, 12 + Math.random()*26);
+      })();
+    });
+  }
+
+  /* ---------- entropy feed ---------- */
+  var feed = document.getElementById('feed');
+  function pushRaw(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    feed.appendChild(d);
+    while (feed.children.length > 12) feed.removeChild(feed.firstChild);
+  }
+  var hexByte = function(){ return Math.floor(Math.random()*256).toString(16).padStart(2,'0'); };
+  var SRC = ['DNM/turno','RENAPER/lote','ventanilla_4','expediente','feriado_check','sello_azul','fotocopia_x3'];
+  var Q = ['∞','∞','∞','NaN','¯\\_(ツ)_/¯'];
+  function feedLine(){
+    var bytes = [];
+    for (var i=0; i<12; i++) bytes.push(hexByte());
+    return '[' + timeStr() + '] src=' + pick(SRC) + '  ' + bytes.join(' ') + '  H=' + pick(Q);
+  }
+  for (var fi=0; fi<8; fi++) pushRaw(feedLine());
+  setInterval(function(){ if (!document.hidden) pushRaw(feedLine()); }, 700);
+
+  /* ---------- queue board + turno ---------- */
+  var LET = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+  var servEl = document.getElementById('servNum');
+  var yourEl = document.getElementById('yourNum');
+  var servL = 'A', servN = 3 + Math.floor(Math.random()*18);
+  var yourIdx = 12 + Math.floor(Math.random()*8);
+  var yourN = 300 + Math.floor(Math.random()*500);
+  var turnoStr = LET.charAt(yourIdx) + yourN;
+  yourEl.textContent = turnoStr;
+  function blipEl(el){ el.classList.remove('blip'); void el.offsetWidth; el.classList.add('blip'); }
+  function pad3(n){ n = Math.max(1, n); return n < 1000 ? ('00' + n).slice(-3) : String(n); }
+  function renderServ(txt){ servEl.textContent = txt; blipEl(servEl); }
+  renderServ(servL + pad3(servN));
+  function tickServ(){
+    if (!document.hidden){
+      var r = Math.random();
+      if (r < .5){ servN++; }
+      else if (r < .72){ servN = Math.max(1, servN - (1 + Math.floor(Math.random()*4))); }
+      else if (r < .82){
+        var ix = LET.indexOf(servL);
+        servL = LET.charAt(Math.max(0, ix - 1 - Math.floor(Math.random()*2)));
+        servN = 1 + Math.floor(Math.random()*9);
+      }
+      else if (r < .92){ renderServ('– – –'); scheduleServ(); return; }
+      else { servN += 40 + Math.floor(Math.random()*60); }
+      renderServ(servL + pad3(servN));
+    }
+    scheduleServ();
+  }
+  function scheduleServ(){ setTimeout(tickServ, 3200 + Math.random()*3200); }
+  scheduleServ();
+  function advanceTurno(){
+    yourN += 50 + Math.floor(Math.random()*250);
+    if (yourN > 999){
+      yourIdx = Math.min(yourIdx + 1, LET.length - 1);
+      yourN = 100 + (yourN - 999) % 400;
+    }
+    turnoStr = LET.charAt(yourIdx) + yourN;
+    yourEl.textContent = turnoStr;
+    blipEl(yourEl);
+  }
+
+  /* ---------- ticket printer ---------- */
+  var ticket = document.getElementById('ticket');
+  function tkRow(l, v){ return '<div class="tr"><span>' + l + '</span><span>' + v + '</span></div>'; }
+  function printTicket(){
+    var now = new Date();
+    var dd = ('0' + now.getDate()).slice(-2);
+    var mm = ('0' + (now.getMonth() + 1)).slice(-2);
+    var hh = now.toTimeString().slice(0,5);
+    ticket.innerHTML =
+      '<div class="tk-h">✶ TRÁMITERAND ✶</div>' +
+      '<div class="tk-h2">MIGRACIONES · VENT. 4</div>' +
+      '<div class="hr"></div>' +
+      tkRow('TURNO', turnoStr) +
+      tkRow('DOC', docEl.textContent) +
+      tkRow('FECHA', dd + '/' + mm + '/' + now.getFullYear()) +
+      tkRow('HORA', hh) +
+      '<div class="hr"></div>' +
+      tkRow('ESTADO', 'EN PRODUCCIÓN') +
+      tkRow('ESPERA', 'SÍ') +
+      '<div class="hr"></div>' +
+      '<div class="tk-f">CONSERVE ESTE TICKET</div>' +
+      '<div class="tk-f2">(NO SIRVE PARA NADA)</div>';
+    ticket.classList.remove('printing');
+    void ticket.offsetWidth;
+    ticket.classList.add('printing');
+    pushRaw('[' + timeStr() + '] print=ticket ' + turnoStr + '  dest=nadie');
+  }
+
+  /* ---------- safety sign ---------- */
+  var sfN = 3;
+  var sd1 = document.getElementById('sd1'), sd2 = document.getElementById('sd2'), sd3 = document.getElementById('sd3');
+  var safetyIn = document.getElementById('safetyIn');
+  var stampEl = document.getElementById('stamp');
+  function sfRender(){
+    var s = ('00' + sfN).slice(-3);
+    sd1.textContent = s.charAt(0);
+    sd2.textContent = s.charAt(1);
+    sd3.textContent = s.charAt(2);
+  }
+  sfRender();
+  function sfCrash(){
+    safetyIn.classList.add('crash');
+    stampEl.classList.remove('show');
+    void stampEl.offsetWidth;
+    stampEl.classList.add('show');
+    pushRaw('[' + timeStr() + '] ✶ EXPEDIENTE EXTRAVIADO ✶ counter=0');
+    setTimeout(function(){ sfN = 0; sfRender(); }, 380);
+    setTimeout(function(){ safetyIn.classList.remove('crash'); }, 650);
+  }
+  function sfTick(){
+    if (!document.hidden){
+      if (sfN >= 8 || (sfN > 0 && Math.random() < .16)){ sfCrash(); }
+      else { sfN++; sfRender(); }
+    }
+    setTimeout(sfTick, 1300 + Math.random()*500);
+  }
+  setTimeout(sfTick, 1600);
+
+  /* ---------- share as image ---------- */
+  var modal = document.getElementById('shareModal');
+  var shareImg = document.getElementById('shareImg');
+  var dlLink = document.getElementById('dlLink');
+  function rr(x, a, b, w, h, r){
+    x.beginPath();
+    x.moveTo(a + r, b);
+    x.arcTo(a + w, b, a + w, b + h, r);
+    x.arcTo(a + w, b + h, a, b + h, r);
+    x.arcTo(a, b + h, a, b, r);
+    x.arcTo(a, b, a + w, b, r);
+    x.closePath();
+  }
+  function drawSunC(x, cx, cy, rIn, rOut, style, lw, core){
+    x.strokeStyle = style; x.lineWidth = lw;
+    x.beginPath();
+    for (var a=0; a<12; a++){
+      var ang = a * Math.PI / 6;
+      x.moveTo(cx + Math.cos(ang)*rIn, cy + Math.sin(ang)*rIn);
+      x.lineTo(cx + Math.cos(ang)*rOut, cy + Math.sin(ang)*rOut);
+    }
+    x.stroke();
+    x.beginPath();
+    x.arc(cx, cy, rIn * 0.68, 0, Math.PI*2);
+    if (core){ x.fillStyle = core; x.fill(); }
+    x.stroke();
+  }
+  function wrapText(x, text, maxW){
+    var words = text.split(' ');
+    var lines = [], cur = '';
+    for (var i=0; i<words.length; i++){
+      var t = cur ? cur + ' ' + words[i] : words[i];
+      if (x.measureText(t).width > maxW && cur){ lines.push(cur); cur = words[i]; }
+      else { cur = t; }
+    }
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  function renderShare(){
+    var W = 1200, H = 630;
+    var c = document.createElement('canvas'); c.width = W; c.height = H;
+    var x = c.getContext('2d');
+    x.fillStyle = '#F2F0E8'; x.fillRect(0, 0, W, H);
+    drawSunC(x, 1080, 96, 60, 96, 'rgba(232,162,26,.22)', 3, null);
+    x.fillStyle = '#0E2431';
+    x.font = '700 30px "IBM Plex Mono", monospace';
+    x.fillText('✶', 48, 74);
+    x.fillStyle = '#E8A21A'; x.fillText('✶', 48, 74);
+    x.fillStyle = '#0E2431'; x.fillText('TrámiteRand™', 82, 74);
+
+    /* DNI mini card */
+    x.save();
+    x.translate(48, 132);
+    x.rotate(-0.03);
+    var CW = 560, CH = 353;
+    rr(x, 0, 0, CW, CH, 18);
+    var g = x.createLinearGradient(0, 0, CW, CH);
+    g.addColorStop(0, '#F2FBFF'); g.addColorStop(.5, '#DCF0F8'); g.addColorStop(1, '#C2E1EF');
+    x.fillStyle = g; x.fill();
+    x.save();
+    rr(x, 0, 0, CW, CH, 18); x.clip();
+    x.strokeStyle = 'rgba(99,174,203,.5)'; x.lineWidth = 1;
+    var waves = [[46,36],[70,36],[94,36],[196,44],[222,44],[300,30],[324,30]];
+    for (var wv=0; wv<waves.length; wv++){
+      var y0 = waves[wv][0], am = waves[wv][1];
+      x.beginPath();
+      x.moveTo(0, y0);
+      x.bezierCurveTo(93, y0-am, 187, y0+am, 280, y0);
+      x.bezierCurveTo(373, y0-am, 467, y0+am, 560, y0);
+      x.stroke();
+    }
+    drawSunC(x, 545, 120, 60, 95, 'rgba(44,126,163,.14)', 2, null);
+    /* header */
+    drawSunC(x, 52, 46, 11, 18, '#E8A21A', 2.4, '#F6B40E');
+    x.fillStyle = '#0C4A66';
+    x.font = '700 21px "IBM Plex Sans", sans-serif';
+    x.fillText('REPÚBLICA ARGENTINA', 82, 44);
+    x.fillStyle = '#3E86B8';
+    x.font = '600 11px "IBM Plex Sans", sans-serif';
+    x.fillText('M E R C O S U R', 84, 62);
+    x.font = '600 11px "IBM Plex Mono", monospace';
+    x.textAlign = 'right';
+    x.fillText('DNI · TARJETA', CW - 26, 40);
+    x.fillText('REPOSICIÓN ∞', CW - 26, 56);
+    x.textAlign = 'left';
+    x.fillStyle = '#2C6E8D';
+    x.font = 'italic 500 13px "IBM Plex Sans", sans-serif';
+    x.fillText('Documento Nacional de Identidad', 30, 88);
+    /* photo */
+    rr(x, 30, 102, 118, 150, 8); x.fillStyle = '#CFE6F0'; x.fill();
+    x.save(); rr(x, 30, 102, 118, 150, 8); x.clip();
+    x.fillStyle = '#8FB9CC';
+    x.beginPath(); x.arc(89, 152, 26, 0, Math.PI*2); x.fill();
+    x.beginPath(); x.moveTo(44, 252); x.bezierCurveTo(44, 208, 134, 208, 134, 252); x.closePath(); x.fill();
+    x.fillStyle = '#EAF6FB';
+    x.font = '600 10px "IBM Plex Mono", monospace';
+    x.textAlign = 'center'; x.fillText('FOTO PENDIENTE', 89, 244); x.textAlign = 'left';
+    x.restore();
+    /* fields */
+    function fld(fx, fy, l, v){
+      x.fillStyle = '#4A7D95';
+      x.font = '600 9.5px "IBM Plex Sans", sans-serif';
+      x.fillText(l.toUpperCase(), fx, fy);
+      x.fillStyle = '#0E3A4F';
+      x.font = '700 14px "IBM Plex Mono", monospace';
+      x.fillText(v, fx, fy + 17);
+    }
+    fld(170, 116, 'Apellido / Surname', 'ESPERANDO');
+    fld(170, 154, 'Nombre / Name', 'SIGO');
+    fld(170, 192, 'Nacionalidad', 'EN TRÁMITE');
+    fld(378, 192, 'Ejemplar', 'Ñ');
+    fld(170, 230, 'Fecha de emisión', 'MAÑANA');
+    fld(378, 230, 'Vencimiento', 'AYER');
+    /* doc number */
+    x.fillStyle = '#4A7D95';
+    x.font = '600 10px "IBM Plex Sans", sans-serif';
+    x.fillText('DOCUMENTO / DOCUMENT', 30, 285);
+    x.fillStyle = '#062E42';
+    x.font = '700 34px "IBM Plex Mono", monospace';
+    x.fillText(docEl.textContent, 30, 318);
+    x.fillStyle = '#2C5D77';
+    x.font = '600 12px "IBM Plex Mono", monospace';
+    x.fillText('TRÁMITE N° ' + tramEl.textContent, 30, 340);
+    /* firma */
+    x.strokeStyle = '#123B52'; x.lineWidth = 1.8;
+    x.beginPath();
+    x.moveTo(408, 320);
+    x.bezierCurveTo(424, 302, 432, 328, 446, 314);
+    x.bezierCurveTo(460, 300, 476, 326, 492, 316);
+    x.bezierCurveTo(506, 308, 518, 320, 532, 304);
+    x.stroke();
+    x.fillStyle = '#4A7D95';
+    x.font = '600 9px "IBM Plex Sans", sans-serif';
+    x.textAlign = 'center'; x.fillText('FIRMA / SIGNATURE', 470, 338); x.textAlign = 'left';
+    x.restore();
+    x.restore();
+
+    /* verdict box */
+    var vx = 656, vw = 496;
+    x.fillStyle = '#3E86B8';
+    x.font = '600 14px "IBM Plex Mono", monospace';
+    x.fillText(I18N[LANG].sh_eyebrow.toUpperCase(), vx, 140);
+    x.font = '600 21px "IBM Plex Mono", monospace';
+    var vtext = '> ' + (lastVerdict >= 0 ? VER[LANG][lastVerdict] : I18N[LANG].v_placeholder.replace(/^>\s*/, ''));
+    var lines = wrapText(x, vtext, vw - 52);
+    var boxH = lines.length * 31 + 46;
+    rr(x, vx, 158, vw, boxH, 14);
+    x.fillStyle = '#FFFFFF'; x.fill();
+    x.setLineDash([8, 6]);
+    x.strokeStyle = '#3E86B8'; x.lineWidth = 2; x.stroke();
+    x.setLineDash([]);
+    x.fillStyle = '#0D3D55';
+    for (var ln=0; ln<lines.length; ln++){
+      x.fillText(lines[ln], vx + 26, 158 + 38 + ln * 31);
+    }
+    x.fillStyle = '#3A5866';
+    x.font = '600 15px "IBM Plex Mono", monospace';
+    x.fillText(I18N[LANG].bits_pre + ' ' + bits + ' ' + I18N[LANG].bits_unit + '  ·  TURNO ' + turnoStr, vx, 158 + boxH + 34);
+
+    /* bottom strip */
+    x.fillStyle = '#0E2431'; x.fillRect(0, H - 56, W, 56);
+    x.fillStyle = '#FFD34D';
+    x.font = '600 15px "IBM Plex Mono", monospace';
+    x.fillText('SIN TURNOS DISPONIBLES ✶ VUELVA MAÑANA ✶ SISTEMA CAÍDO ✶ FERIADO ✶ PARO ✶ EN PRODUCCIÓN (¿?)', 48, H - 22);
+    return c.toDataURL('image/png');
+  }
+  shareBtn.addEventListener('click', function(){
+    var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    ready.then(function(){
+      var url = renderShare();
+      shareImg.src = url;
+      dlLink.href = url;
+      modal.classList.add('open');
+    });
+  });
+  function closeShare(){ modal.classList.remove('open'); }
+  document.getElementById('closeModal').addEventListener('click', closeShare);
+  modal.addEventListener('click', function(e){ if (e.target === modal) closeShare(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeShare(); });
+
+  /* ---------- generate ---------- */
+  async function generate(){
+    if (btn.disabled) return;
+    btn.disabled = true;
+    typeSession++;
+    verdictEl.textContent = I18N[LANG].q_wait;
+    playPrint(2000);
+    await Promise.all([ roll(docSpans), roll(tramSpans) ]);
+    advanceTurno();
+    printTicket();
+    bits += Math.floor(Math.random()*57) + 8;
+    bitsEl.textContent = bits.toLocaleString(LANG === 'ru' ? 'ru-RU' : (LANG === 'es' ? 'es-AR' : 'en-US'));
+    var idx;
+    do { idx = Math.floor(Math.random()*VER[LANG].length); } while (idx === lastVerdict);
+    lastVerdict = idx;
+    await typeInto(verdictEl, VER[LANG][idx]);
+    miniRow.hidden = false;
+    btn.disabled = false;
+  }
+  btn.addEventListener('click', generate);
+
+  /* ---------- copy verdict ---------- */
+  copyBtn.addEventListener('click', function(){
+    var t = verdictEl.textContent.replace(/^>\s*/, '');
+    function done(ok){
+      copyBtn.textContent = ok ? I18N[LANG].copied : '✕';
+      setTimeout(function(){ copyBtn.textContent = I18N[LANG].copy; }, 1300);
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = t;
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch(e){}
+      document.body.removeChild(ta);
+      done(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){ done(true); }, fallback);
+    } else { fallback(); }
+  });
+
+  /* first roll for delight */
+  setTimeout(generate, 700);
+})();
+</script>
+</body>
+</html>
